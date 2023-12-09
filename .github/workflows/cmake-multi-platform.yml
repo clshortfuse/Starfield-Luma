@@ -45,6 +45,10 @@ jobs:
         git submodule update --init --recursive
         git submodule update --recursive --remote
 
+    - name: Build shaders
+      run: |
+        .\shaders\compile_all_shaders.ps1
+
     - name: Set reusable strings
       # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
       id: strings
@@ -68,8 +72,6 @@ jobs:
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         -S ${{ github.workspace }}/Plugin
         --preset=build-release-msvc-msvc
-        
-
 
 
     - name: Build
