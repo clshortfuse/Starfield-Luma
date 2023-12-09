@@ -28,6 +28,7 @@ jobs:
         c_compiler: [gcc, clang, cl]
         include:
           - os: windows-latest
+            vcpkgCommitId: 'a7d99a5c3cd1456af023051d025a5643a2d6e79c'
             c_compiler: cl
             cpp_compiler: cl
         exclude:
@@ -49,6 +50,7 @@ jobs:
     - name: Configure vcpkg
       uses: lukka/run-vcpkg@v11
       with:
+        vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}'
         vcpkgJsonGlob: '**/Plugin/vcpkg.json'
       
     - name: Configure CMake
